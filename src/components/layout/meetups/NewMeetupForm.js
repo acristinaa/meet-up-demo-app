@@ -2,7 +2,7 @@ import classes from "./NewMeetupForm.module.css";
 import Card from "../../userInterface/Card";
 import { useRef } from "react";
 
-function NewMeetupForm() {
+function NewMeetupForm(props) {
   const titleInputRef = useRef();
   const imageInputRef = useRef();
   const addressInputRef = useRef();
@@ -22,12 +22,12 @@ function NewMeetupForm() {
       description: enteredDescription,
     };
 
-    console.log(meetupData);
+    props.onAddMeetUp(meetupData);
   }
 
   return (
     <Card>
-      <from classNae={classes.form} onSubmit={submitHandler}>
+      <form className={classes.form} onSubmit={submitHandler}>
         <div className={classes.control}>
           <label htmlFor="title">Meetup Title</label>
           <input type="text" required id="title" ref={titleInputRef} />
@@ -51,7 +51,7 @@ function NewMeetupForm() {
         <div className={classes.actions}>
           <button>Add Meetup</button>
         </div>
-      </from>
+      </form>
     </Card>
   );
 }
